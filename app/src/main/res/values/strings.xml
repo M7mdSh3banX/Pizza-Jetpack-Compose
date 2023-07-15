@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Pizza</string>
+    <string name="arrow_back_icon_desc">Arrow Back Icon</string>
+    <string name="header_title">Pizza</string>
+    <string name="favorite_icon_desc">Favorite Icon</string>
 </resources>
