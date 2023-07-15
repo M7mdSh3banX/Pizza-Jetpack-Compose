@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.shaban.pizza.R
 import com.shaban.pizza.ui.composable.BreadPager
+import com.shaban.pizza.ui.composable.CustomIndicator
 import com.shaban.pizza.ui.composable.HomeHeader
 import com.shaban.pizza.ui.theme.WhiteBackground
 
@@ -54,7 +56,7 @@ fun HomeContent(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(300.dp),
+                .height(320.dp),
             contentAlignment = Alignment.Center
         ) {
             Image(
@@ -64,7 +66,13 @@ fun HomeContent(
                 modifier = Modifier.size(250.dp)
             )
             BreadPager(breads = state.breads, pagerState = pagerState)
+            CustomIndicator(
+                pagerState = pagerState,
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
         }
+        Spacer(modifier = Modifier.weight(1F))
+
     }
 }
 
