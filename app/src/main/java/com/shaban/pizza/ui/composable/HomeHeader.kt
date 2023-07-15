@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -35,7 +36,7 @@ fun HomeHeader(
         )
         Text(text = stringResource(R.string.header_title), style = Typography.titleLarge)
         CustomIcon(
-            imageVector = Icons.Outlined.Favorite,
+            imageVector = Icons.Outlined.FavoriteBorder,
             contentDescription = stringResource(R.string.favorite_icon_desc),
             tint = Primary
         )
