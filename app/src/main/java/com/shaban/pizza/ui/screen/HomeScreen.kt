@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -27,6 +29,7 @@ import com.shaban.pizza.R
 import com.shaban.pizza.ui.composable.BreadPager
 import com.shaban.pizza.ui.composable.CustomIndicator
 import com.shaban.pizza.ui.composable.HomeHeader
+import com.shaban.pizza.ui.theme.Typography
 import com.shaban.pizza.ui.theme.WhiteBackground
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -71,8 +74,12 @@ fun HomeContent(
                 modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
-        Spacer(modifier = Modifier.weight(1F))
-
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = "$${state.breads[pagerState.currentPage].price}",
+            style = Typography.titleLarge,
+            modifier = Modifier.align(Alignment.CenterHorizontally)
+        )
     }
 }
 

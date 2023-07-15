@@ -12,28 +12,28 @@ val Bread1 = BreadUiState(
 )
 val Bread2 = BreadUiState(
     bread = R.drawable.bread_2,
-    price = 7.0,
+    price = 8.0,
     isFavorite = false,
     size = "S",
     ingredients = emptyList()
 )
 val Bread3 = BreadUiState(
     bread = R.drawable.bread_3,
-    price = 7.0,
+    price = 9.0,
     isFavorite = false,
     size = "S",
     ingredients = emptyList()
 )
 val Bread4 = BreadUiState(
     bread = R.drawable.bread_4,
-    price = 7.0,
+    price = 10.0,
     isFavorite = false,
     size = "S",
     ingredients = emptyList()
 )
 val Bread5 = BreadUiState(
     bread = R.drawable.bread_5,
-    price = 7.0,
+    price = 11.0,
     isFavorite = false,
     size = "S",
     ingredients = emptyList()
