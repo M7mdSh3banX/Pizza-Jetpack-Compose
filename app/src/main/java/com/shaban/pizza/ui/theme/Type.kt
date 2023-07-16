@@ -11,19 +11,19 @@ val Typography = Typography(
     titleLarge = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 24.sp,
+        fontSize = 32.sp,
         color = Black
     ),
     titleMedium = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
+        fontSize = 28.sp,
         color = Black
     ),
     titleSmall = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
+        fontSize = 24.sp,
         color = Black
     ),
     // endregion
@@ -31,20 +31,20 @@ val Typography = Typography(
     // region Body
     bodyLarge = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.Medium,
-        fontSize = 18.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 24.sp,
         color = Black
     ),
     bodyMedium = TextStyle(
         fontFamily = Poppins,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
         color = Black
     ),
     bodySmall = TextStyle(
         fontFamily = Poppins,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         color = Black
     ),
     // endregion

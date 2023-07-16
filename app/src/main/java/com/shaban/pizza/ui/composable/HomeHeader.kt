@@ -31,13 +31,11 @@ fun HomeHeader(
         CustomIcon(
             imageVector = Icons.Default.ArrowBack,
             contentDescription = stringResource(R.string.arrow_back_icon_desc),
-            tint = Primary
         )
-        Text(text = stringResource(R.string.header_title), style = Typography.titleLarge)
+        Text(text = stringResource(R.string.header_title), style = Typography.titleMedium)
         CustomIcon(
             imageVector = Icons.Outlined.FavoriteBorder,
             contentDescription = stringResource(R.string.favorite_icon_desc),
-            tint = Primary
         )
     }
 }

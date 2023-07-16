@@ -3,8 +3,10 @@ package com.shaban.pizza.ui.screen
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,6 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Icon
@@ -60,6 +64,7 @@ fun HomeContent(
         modifier = Modifier
             .fillMaxSize()
             .background(WhiteBackground)
+            .verticalScroll(rememberScrollState())
     ) {
         HomeHeader()
         Box(
@@ -86,6 +91,36 @@ fun HomeContent(
             style = Typography.titleLarge,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
+
+        Box(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.spacedBy(
+                    space = 48.dp,
+                    alignment = Alignment.CenterHorizontally
+                ),
+            ) {
+                Text(
+                    text = "S",
+                    style = Typography.bodyLarge,
+                    modifier = Modifier
+                )
+                Text(
+                    text = "M",
+                    style = Typography.bodyLarge,
+                    modifier = Modifier
+                )
+                Text(
+                    text = "L",
+                    style = Typography.bodyLarge,
+                    modifier = Modifier
+                )
+            }
+        }
+
+
         Spacer(modifier = Modifier.weight(1F))
         PressIconButton(
             modifier = Modifier
