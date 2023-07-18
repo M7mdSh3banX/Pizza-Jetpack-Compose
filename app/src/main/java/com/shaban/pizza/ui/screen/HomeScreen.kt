@@ -71,7 +71,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     HomeContent(
         state = state,
         pagerState = pagerState,
-        onClickFavorite = viewModel::onClickFavoriteIcon
+        onClickFavorite = viewModel::onClickFavoriteIcon,
+        onClickSelectedTopping = viewModel::onClickSelectedTopping
     )
 }
 
@@ -80,7 +81,8 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
 fun HomeContent(
     state: HomeUiState,
     pagerState: PagerState,
-    onClickFavorite: () -> Unit
+    onClickFavorite: () -> Unit,
+    onClickSelectedTopping: (ToppingUiState) -> Unit
 ) {
     var horizontalBias by remember { mutableFloatStateOf(PizzaSize.MEDIUM.bias) }
     val alignment by animateHorizontalAlignmentAsState(horizontalBias)
@@ -180,7 +182,11 @@ fun HomeContent(
             contentPadding = PaddingValues(horizontal = 16.dp)
         ) {
             items(state.toppings) { topping ->
-                ToppingItem(itemImage = topping.item)
+                ToppingItem(
+                    itemImage = topping.item,
+                    state = topping,
+                    onClickSelectedTopping = { onClickSelectedTopping(topping) }
+                )
             }
         }
 

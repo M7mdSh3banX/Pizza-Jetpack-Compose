@@ -44,4 +44,17 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             currentState.copy(breads = updatedPizza)
         }
     }
+
+    fun onClickSelectedTopping(topping: ToppingUiState) {
+        _state.update { currentState ->
+            val updatedToppings = currentState.toppings.map { currentTopping ->
+                if (currentTopping == topping) {
+                    currentTopping.copy(isSelected = !currentTopping.isSelected)
+                } else {
+                    currentTopping
+                }
+            }
+            currentState.copy(toppings = updatedToppings)
+        }
+    }
 }

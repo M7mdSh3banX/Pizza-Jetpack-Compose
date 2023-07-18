@@ -12,23 +12,29 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.shaban.pizza.ui.screen.ToppingUiState
 import com.shaban.pizza.ui.theme.Secondary
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ToppingItem(
     modifier: Modifier = Modifier,
-    @DrawableRes itemImage: Int
+    @DrawableRes itemImage: Int,
+    state: ToppingUiState,
+    onClickSelectedTopping: (ToppingUiState) -> Unit
 ) {
     Card(
         modifier = modifier.size(54.dp),
         shape = CircleShape,
         elevation = CardDefaults.cardElevation(0.dp),
-        colors = CardDefaults.cardColors(Secondary),
-        onClick = { }
+        colors = if (state.isSelected) CardDefaults.cardColors(Secondary) else CardDefaults.cardColors(
+            Transparent
+        ),
+        onClick = { onClickSelectedTopping(state) }
     ) {
         Box(modifier = Modifier.fillMaxSize()) {
             Image(
