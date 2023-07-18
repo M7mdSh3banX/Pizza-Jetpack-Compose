@@ -46,6 +46,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -125,7 +126,7 @@ fun HomeContent(
         Box(
             modifier = Modifier
                 .padding(top = 16.dp)
-                .fillMaxWidth(0.4F)
+                .fillMaxWidth(0.5F)
                 .wrapContentHeight(),
             contentAlignment = Alignment.Center
         ) {
@@ -138,8 +139,10 @@ fun HomeContent(
                 colors = CardDefaults.cardColors(White),
             ) { }
             Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceAround
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 PizzaSize.values().forEach { size ->
                     Text(
@@ -148,7 +151,8 @@ fun HomeContent(
                         modifier = Modifier.clickable {
                             horizontalBias = size.bias
                             pizzaSize = size.size
-                        }
+                        },
+                        textAlign = TextAlign.Center
                     )
                 }
             }
