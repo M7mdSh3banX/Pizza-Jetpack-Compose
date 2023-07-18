@@ -29,7 +29,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -41,7 +40,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -56,8 +54,8 @@ import com.shaban.pizza.ui.composable.BreadPager
 import com.shaban.pizza.ui.composable.CustomIndicator
 import com.shaban.pizza.ui.composable.HomeHeader
 import com.shaban.pizza.ui.composable.PressIconButton
+import com.shaban.pizza.ui.composable.ToppingItem
 import com.shaban.pizza.ui.theme.Black60
-import com.shaban.pizza.ui.theme.Secondary
 import com.shaban.pizza.ui.theme.Typography
 import com.shaban.pizza.ui.theme.WhiteBackground
 
@@ -73,7 +71,7 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     HomeContent(state = state, pagerState = pagerState)
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeContent(
     state: HomeUiState,
@@ -172,28 +170,12 @@ fun HomeContent(
         )
         Spacer(modifier = Modifier.height(16.dp))
         LazyRow(
+            modifier = Modifier.align(Alignment.Start),
             horizontalArrangement = Arrangement.spacedBy(32.dp),
             contentPadding = PaddingValues(horizontal = 16.dp)
         ) {
-            items(state.toppings) {
-                Card(
-                    modifier = Modifier.size(54.dp),
-                    shape = CircleShape,
-                    elevation = CardDefaults.cardElevation(0.dp),
-                    colors = CardDefaults.cardColors(Secondary),
-                    onClick = { }
-                ) {
-                    Box(modifier = Modifier.fillMaxSize()) {
-                        Image(
-                            modifier = Modifier
-                                .size(40.dp)
-                                .align(Center),
-                            painter = painterResource(id = it.item),
-                            contentDescription = "Topping Item",
-                            contentScale = ContentScale.Fit,
-                        )
-                    }
-                }
+            items(state.toppings) { topping ->
+                ToppingItem(itemImage = topping.item)
             }
         }
 
@@ -201,7 +183,7 @@ fun HomeContent(
         PressIconButton(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
-                .padding(bottom = 24.dp),
+                .padding(vertical = 24.dp),
             icon = Icons.Default.ShoppingCart,
             text = stringResource(id = R.string.add_to_cart)
         )
