@@ -2,6 +2,7 @@ package com.shaban.pizza.ui.screen
 
 import androidx.lifecycle.ViewModel
 import com.shaban.pizza.data.breads
+import com.shaban.pizza.data.toppings
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,10 +16,15 @@ class HomeViewModel @Inject constructor() : ViewModel() {
 
     init {
         getBreads()
+        getToppings()
     }
 
     private fun getBreads() {
         _state.update { it.copy(breads = breads) }
+    }
+
+    private fun getToppings() {
+        _state.update { it.copy(toppings = toppings) }
     }
 
     fun onClickUpdatePizzaSize(size: PizzaSize) {
