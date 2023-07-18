@@ -24,10 +24,10 @@ data class ToppingUiState(
     val type: ToppingType = ToppingType.BASIL
 )
 
-enum class PizzaSize(val size: Dp, val bias: Float) {
-    SMALL(200.dp, -1F),
-    MEDIUM(210.dp, 0F),
-    LARGE(220.dp, 1F)
+enum class PizzaSize(val symbol: String, val size: Dp, val bias: Float) {
+    SMALL("S", 200.dp, -1F),
+    MEDIUM("M", 210.dp, 0F),
+    LARGE("L", 220.dp, 1F)
 }
 
 enum class ToppingType {

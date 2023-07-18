@@ -141,30 +141,16 @@ fun HomeContent(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Text(
-                    text = "S",
-                    style = Typography.bodyLarge,
-                    modifier = Modifier.clickable {
-                        horizontalBias = PizzaSize.SMALL.bias
-                        pizzaSize = PizzaSize.SMALL.size
-                    }
-                )
-                Text(
-                    text = "M",
-                    style = Typography.bodyLarge,
-                    modifier = Modifier.clickable {
-                        horizontalBias = PizzaSize.MEDIUM.bias
-                        pizzaSize = PizzaSize.MEDIUM.size
-                    }
-                )
-                Text(
-                    text = "L",
-                    style = Typography.bodyLarge,
-                    modifier = Modifier.clickable {
-                        horizontalBias = PizzaSize.LARGE.bias
-                        pizzaSize = PizzaSize.LARGE.size
-                    }
-                )
+                PizzaSize.values().forEach { size ->
+                    Text(
+                        text = size.symbol,
+                        style = Typography.bodyLarge,
+                        modifier = Modifier.clickable {
+                            horizontalBias = size.bias
+                            pizzaSize = size.size
+                        }
+                    )
+                }
             }
         }
         Spacer(modifier = Modifier.height(32.dp))
