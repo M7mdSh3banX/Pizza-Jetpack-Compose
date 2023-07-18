@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(): ViewModel(){
+class HomeViewModel @Inject constructor() : ViewModel() {
     private val _state = MutableStateFlow(HomeUiState())
     val state = _state.asStateFlow()
 
@@ -19,5 +19,14 @@ class HomeViewModel @Inject constructor(): ViewModel(){
 
     private fun getBreads() {
         _state.update { it.copy(breads = breads) }
+    }
+
+    fun onClickUpdatePizzaSize(size: PizzaSize) {
+        _state.update { currentState ->
+            val updatedBread = currentState.breads.map { bread ->
+                bread.copy(size = size)
+            }
+            currentState.copy(breads = updatedBread)
+        }
     }
 }

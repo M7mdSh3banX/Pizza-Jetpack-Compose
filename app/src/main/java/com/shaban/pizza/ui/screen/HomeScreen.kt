@@ -1,5 +1,6 @@
 package com.shaban.pizza.ui.screen
 
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -16,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.pager.PagerState
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.rememberScrollState
@@ -26,8 +26,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -35,6 +33,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -44,7 +43,6 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -68,14 +66,17 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
     HomeContent(state = state, pagerState = pagerState)
 }
 
-@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeContent(
     state: HomeUiState,
     pagerState: PagerState
 ) {
-    var horizontalBias by remember { mutableFloatStateOf(-1F) }
+    var horizontalBias by remember { mutableFloatStateOf(PizzaSize.MEDIUM.bias) }
     val alignment by animateHorizontalAlignmentAsState(horizontalBias)
+
+    var pizzaSize by remember { mutableStateOf(PizzaSize.MEDIUM.size) }
+    val sizeAnimation by animateDpAsState(targetValue = pizzaSize)
 
     Column(
         modifier = Modifier
@@ -97,7 +98,7 @@ fun HomeContent(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(250.dp)
             )
-            BreadPager(breads = state.breads, pagerState = pagerState)
+            BreadPager(breads = state.breads, pagerState = pagerState, pizzaSize = sizeAnimation)
             CustomIndicator(
                 pagerState = pagerState,
                 modifier = Modifier.align(Alignment.BottomCenter)
@@ -131,17 +132,26 @@ fun HomeContent(
                 Text(
                     text = "S",
                     style = Typography.bodyLarge,
-                    modifier = Modifier.clickable { horizontalBias = -1F }
+                    modifier = Modifier.clickable {
+                        horizontalBias = PizzaSize.SMALL.bias
+                        pizzaSize = PizzaSize.SMALL.size
+                    }
                 )
                 Text(
                     text = "M",
                     style = Typography.bodyLarge,
-                    modifier = Modifier.clickable { horizontalBias = 0F }
+                    modifier = Modifier.clickable {
+                        horizontalBias = PizzaSize.MEDIUM.bias
+                        pizzaSize = PizzaSize.MEDIUM.size
+                    }
                 )
                 Text(
                     text = "L",
                     style = Typography.bodyLarge,
-                    modifier = Modifier.clickable { horizontalBias = 1F }
+                    modifier = Modifier.clickable {
+                        horizontalBias = PizzaSize.LARGE.bias
+                        pizzaSize = PizzaSize.LARGE.size
+                    }
                 )
             }
         }
@@ -151,22 +161,9 @@ fun HomeContent(
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .padding(bottom = 24.dp),
-            icon = {
-                Icon(
-                    imageVector = Icons.Default.ShoppingCart,
-                    contentDescription = "Icon",
-                    tint = White,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
-        ) {
-            Text(
-                text = stringResource(id = R.string.add_to_cart),
-                style = Typography.labelLarge.copy(color = White),
-                modifier = Modifier.padding(start = 8.dp),
-                textAlign = TextAlign.Center
-            )
-        }
+            icon = Icons.Default.ShoppingCart,
+            text = stringResource(id = R.string.add_to_cart)
+        )
     }
 }
 

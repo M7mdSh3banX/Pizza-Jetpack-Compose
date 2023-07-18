@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.shaban.pizza.R
 import com.shaban.pizza.ui.screen.BreadUiState
@@ -22,7 +23,8 @@ import com.shaban.pizza.ui.screen.BreadUiState
 fun BreadPager(
     breads: List<BreadUiState>,
     pagerState: PagerState,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    pizzaSize: Dp
 ) {
     HorizontalPager(
         state = pagerState,
@@ -37,7 +39,7 @@ fun BreadPager(
                 painter = painterResource(id = breads[pageIndex].bread),
                 contentDescription = stringResource(R.string.pizza_plate),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(180.dp)
+                modifier = Modifier.size(pizzaSize)
             )
         }
     }
