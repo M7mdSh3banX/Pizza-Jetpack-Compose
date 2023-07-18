@@ -35,4 +35,13 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             currentState.copy(breads = updatedBread)
         }
     }
+
+    fun onClickFavoriteIcon() {
+        _state.update { currentState ->
+            val updatedPizza = currentState.breads.map { pizza ->
+                pizza.copy(isFavorite = !pizza.isFavorite)
+            }
+            currentState.copy(breads = updatedPizza)
+        }
+    }
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.outlined.Favorite
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,12 +15,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.shaban.pizza.R
+import com.shaban.pizza.ui.screen.BreadUiState
+import com.shaban.pizza.ui.theme.Black
 import com.shaban.pizza.ui.theme.Primary
 import com.shaban.pizza.ui.theme.Typography
 
 @Composable
 fun HomeHeader(
-    modifier: Modifier = Modifier
+    state: BreadUiState,
+    modifier: Modifier = Modifier,
+    onClickFavorite: () -> Unit
 ) {
     Row(
         modifier = modifier
@@ -34,8 +39,10 @@ fun HomeHeader(
         )
         Text(text = stringResource(R.string.header_title), style = Typography.titleMedium)
         CustomIcon(
-            imageVector = Icons.Outlined.FavoriteBorder,
+            imageVector = if (state.isFavorite) Icons.Outlined.Favorite else Icons.Outlined.FavoriteBorder,
             contentDescription = stringResource(R.string.favorite_icon_desc),
+            onClick = onClickFavorite,
+            tint = if (state.isFavorite) Primary else Black
         )
     }
 }

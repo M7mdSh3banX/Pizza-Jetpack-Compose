@@ -68,14 +68,19 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
         initialPageOffsetFraction = 0f
     ) { state.breads.size }
 
-    HomeContent(state = state, pagerState = pagerState)
+    HomeContent(
+        state = state,
+        pagerState = pagerState,
+        onClickFavorite = viewModel::onClickFavoriteIcon
+    )
 }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeContent(
     state: HomeUiState,
-    pagerState: PagerState
+    pagerState: PagerState,
+    onClickFavorite: () -> Unit
 ) {
     var horizontalBias by remember { mutableFloatStateOf(PizzaSize.MEDIUM.bias) }
     val alignment by animateHorizontalAlignmentAsState(horizontalBias)
@@ -90,7 +95,7 @@ fun HomeContent(
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        HomeHeader()
+        HomeHeader(state = state.breads[pagerState.currentPage], onClickFavorite = onClickFavorite)
         Box(
             modifier = Modifier
                 .fillMaxWidth()
