@@ -56,7 +56,7 @@ class HomeViewModel @Inject constructor() : ViewModel() {
             }
             val selectedToppings = updatedToppings
                 .filter { it.isSelected }
-                .map { it.item }
+                .map { it.items }
 
             val updatedBreads = currentState.breads.map { bread ->
                 bread.copy(ingredients = selectedToppings)

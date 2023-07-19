@@ -53,10 +53,10 @@ fun BreadPager(
                     exit = fadeOut()
                 ) {
                     Image(
-                        painter = painterResource(id = topping.item),
+                        painter = painterResource(id = topping.items),
                         contentDescription = "Ingredients",
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.size(50.dp)
+                        modifier = Modifier.size(150.dp)
                     )
                 }
             }

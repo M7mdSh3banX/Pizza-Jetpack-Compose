@@ -19,7 +19,7 @@ data class BreadUiState(
 
 data class ToppingUiState(
     @DrawableRes val item: Int = 0,
-    @DrawableRes val items: List<Int> = emptyList(),
+    @DrawableRes val items: Int = 0,
     val isSelected: Boolean = false,
     val type: ToppingType = ToppingType.BASIL
 )
