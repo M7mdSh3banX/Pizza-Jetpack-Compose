@@ -111,7 +111,7 @@ fun HomeContent(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(250.dp)
             )
-            BreadPager(breads = state.breads, pagerState = pagerState, pizzaSize = sizeAnimation)
+            BreadPager(state = state, pagerState = pagerState, pizzaSize = sizeAnimation)
             CustomIndicator(
                 pagerState = pagerState,
                 modifier = Modifier.align(Alignment.BottomCenter)

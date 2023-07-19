@@ -1,9 +1,9 @@
 package com.shaban.pizza.ui.composable
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -20,13 +20,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.shaban.pizza.R
-import com.shaban.pizza.ui.screen.BreadUiState
 import com.shaban.pizza.ui.screen.HomeUiState
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BreadPager(
-    breads: List<BreadUiState>,
+    state: HomeUiState,
     pagerState: PagerState,
     modifier: Modifier = Modifier,
     pizzaSize: Dp
@@ -36,26 +35,25 @@ fun BreadPager(
         modifier = modifier.fillMaxSize(),
         verticalAlignment = Alignment.CenterVertically
     ) { pageIndex ->
-        val currentBread = breads[pageIndex]
 
         Box(
             modifier = Modifier.fillMaxSize(),
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(id = currentBread.bread),
+                painter = painterResource(id = state.breads[pageIndex].bread),
                 contentDescription = stringResource(R.string.pizza_plate),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(pizzaSize)
             )
-            currentBread.ingredients.forEach { topping ->
+            state.toppings.forEach { topping ->
                 AnimatedVisibility(
-                    visible = true,
-                    enter = fadeIn(animationSpec = tween(durationMillis = 400)),
-                    exit = fadeOut(animationSpec = tween(durationMillis = 400))
+                    visible = topping.isSelected,
+                    enter = scaleIn(initialScale = 10F) + fadeIn(),
+                    exit = fadeOut()
                 ) {
                     Image(
-                        painter = painterResource(id = topping),
+                        painter = painterResource(id = topping.item),
                         contentDescription = "Ingredients",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.size(50.dp)
