@@ -19,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.shaban.pizza.R
 import com.shaban.pizza.ui.screen.HomeUiState
 
@@ -41,7 +42,7 @@ fun BreadPager(
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(id = state.breads[pageIndex].bread),
+                painter = rememberAsyncImagePainter(model = state.breads[pageIndex].bread),
                 contentDescription = stringResource(R.string.pizza_plate),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(pizzaSize)
@@ -53,7 +54,7 @@ fun BreadPager(
                     exit = fadeOut()
                 ) {
                     Image(
-                        painter = painterResource(id = topping.items),
+                        painter = rememberAsyncImagePainter(model = topping.items),
                         contentDescription = "Ingredients",
                         contentScale = ContentScale.Crop,
                         modifier = Modifier.size(150.dp)

@@ -50,6 +50,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
 import com.shaban.pizza.R
 import com.shaban.pizza.ui.composable.BreadPager
 import com.shaban.pizza.ui.composable.CustomIndicator
@@ -106,7 +107,7 @@ fun HomeContent(
             contentAlignment = Alignment.Center
         ) {
             Image(
-                painter = painterResource(id = R.drawable.plate),
+                painter = rememberAsyncImagePainter(model = R.drawable.plate),
                 contentDescription = stringResource(R.string.pizza_plate),
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.size(250.dp)

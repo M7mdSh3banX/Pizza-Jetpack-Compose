@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.shaban.pizza.ui.screen.ToppingUiState
 import com.shaban.pizza.ui.theme.Secondary
 import kotlinx.coroutines.CoroutineScope
@@ -42,7 +43,7 @@ fun ToppingItem(
                 modifier = Modifier
                     .size(40.dp)
                     .align(Alignment.Center),
-                painter = painterResource(id = itemImage),
+                painter = rememberAsyncImagePainter(model = itemImage),
                 contentDescription = "Topping Item",
                 contentScale = ContentScale.Fit,
             )
